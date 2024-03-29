@@ -6,7 +6,7 @@ import { GetUsersScoresRes } from "../../../shared/requestTypes";
 import Loading from "../components/Loading";
 
 export default function LeaderboardPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     fetchLeaderboard();
@@ -31,14 +31,14 @@ export default function LeaderboardPage() {
     }
   };
 
-  const onChangePage = (n: number) => {
-    const currentPage = Number(searchParams.get("pageNumber")) || 1;
-    const newPageNumber = currentPage + n;
-    if (newPageNumber < 1) return;
-    setSearchParams({
-      pageNumber: String(newPageNumber),
-    });
-  };
+  // const onChangePage = (n: number) => {
+  //   const currentPage = Number(searchParams.get("pageNumber")) || 1;
+  //   const newPageNumber = currentPage + n;
+  //   if (newPageNumber < 1) return;
+  //   setSearchParams({
+  //     pageNumber: String(newPageNumber),
+  //   });
+  // };
 
   if (isLoading) {
     <Loading />;

@@ -1,4 +1,4 @@
-import { FiPlay, FiArrowRightCircle, FiAward } from "react-icons/fi";
+import { FiPlay, FiAward } from "react-icons/fi";
 import CreateGameModal from "../components/CreateGameModal";
 import { Link } from "react-router-dom";
 export default function HomePage() {
