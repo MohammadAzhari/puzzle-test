@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model GameAttempt {
+  id            Int               @id @default(autoincrement())
+  userId        String
+  status        GameAttemptStatus
+  score         Int
+  timeInSeconds Int
+
+  gameElements String @db.Text
+
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @updatedAt @db.Timestamp(6)
+
+  @@map("game_attempts")
+}
+
+model UserScore {
+  id     Int    @id @default(autoincrement())
+  userId String @unique
+  score  Int
+
+  @@map("user_scores")
+}
+
+enum GameAttemptStatus {
+  CANCELED
+  ON_PROGRESS
+  COMPLETED
+}
